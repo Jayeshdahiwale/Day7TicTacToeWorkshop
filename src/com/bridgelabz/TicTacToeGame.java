@@ -6,6 +6,7 @@ public class TicTacToeGame {
 	static char COMPUTER_OPTION;
 	static char PLAYER_OPTION;
 	char [] board = new char[10];
+	static int turnCheck = 0;
 	
 	void initialize() {
 		for(char box: board) {
@@ -38,12 +39,32 @@ public class TicTacToeGame {
 		}
 	}
 	
+	int checkFreeSpace(int input) {
+		if(board[input] == ' ') {
+			return 1;
+		}
+		return 0;
+	}
+	void start() {
+		Scanner scan = new Scanner(System.in);
+		if(turnCheck == 0) {
+			System.out.println("Enter the number from 1-9 :");
+			int input = scan.nextInt();
+			int result = checkFreeSpace(input);
+			if(result == 0) {
+				System.out.println("Spaceis not free. Fill another index");
+				start();
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		
 		TicTacToeGame game = new TicTacToeGame();
 		game.initialize();
 		game.inputOption();
 		game.showBoard();
+		game.start();
 	}
 
 }
