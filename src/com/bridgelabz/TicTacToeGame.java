@@ -7,7 +7,7 @@ public class TicTacToeGame {
 	static char COMPUTER_OPTION;
 	static char PLAYER_OPTION;
 	char [] board = new char[10];
-	static int turnCheck = 0;
+	static int turnCheck;
 	
 	void initialize() {
 		for(char box: board) {
@@ -40,11 +40,31 @@ public class TicTacToeGame {
 		}
 	}
 	
-	int checkFreeSpace(int input) {
+	private int checkFreeSpace(int input) {
 		if(board[input] == ' ') {
 			return 1;
 		}
 		return 0;
+	}
+	
+	void toss() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Predict head or tail");
+		String result = scan.nextLine();
+		String prediction[] = {"head","tail"};
+		int max = 1;
+		int min = 0;
+		int tossResult = (int)(Math.random() * ((max - min) + 1)) + min;
+		if(result.equals(prediction[tossResult])) {
+			System.out.println("It is "+ prediction[tossResult]);
+			System.out.println("Player's Turn");
+			turnCheck = 0;
+		}
+		else {
+			System.out.println("It is "+ prediction[tossResult]);
+			System.out.println("Computers's Turn");
+			turnCheck = 1;
+		}
 	}
 	void start() {
 		Scanner scan = new Scanner(System.in);
@@ -80,6 +100,7 @@ public class TicTacToeGame {
 		game.initialize();
 		game.inputOption();
 		game.showBoard();
+		game.toss();
 		while(true) {
 			game.start();
 		}
