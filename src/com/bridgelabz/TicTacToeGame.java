@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToeGame {
@@ -48,13 +49,28 @@ public class TicTacToeGame {
 	void start() {
 		Scanner scan = new Scanner(System.in);
 		if(turnCheck == 0) {
+			System.out.println("Players Turn");
 			System.out.println("Enter the number from 1-9 :");
 			int input = scan.nextInt();
 			int result = checkFreeSpace(input);
 			if(result == 0) {
-				System.out.println("Spaceis not free. Fill another index");
+				System.out.println("Space is not free. Fill another index");
 				start();
 			}
+			board[input] = PLAYER_OPTION;
+			turnCheck = 1;
+		}
+		else {
+			System.out.println("Computer's Turn ");
+			int max = 9;
+			int min = 1;
+			int input = (int)(Math.random() * ((max - min) + 1)) + min;
+			int result = checkFreeSpace(input);
+			if(result == 0) {
+				start();
+			}
+			board[input] = COMPUTER_OPTION;
+			turnCheck = 0;
 		}
 	}
 	
@@ -64,7 +80,10 @@ public class TicTacToeGame {
 		game.initialize();
 		game.inputOption();
 		game.showBoard();
-		game.start();
+		while(true) {
+			game.start();
+		}
+		
 	}
 
 }
