@@ -28,11 +28,22 @@ public class TicTacToeGame {
 		System.out.println("Player option : "+ PLAYER_OPTION +  "  Computer Option : " + COMPUTER_OPTION);
 	}
 	
+	void showBoard() {
+		char [][] gameBoard = {{' ','|',' ','|',' '},{'_','+','_','+','_'},{' ','|',' ','|',' '},{'_','+','_','+','_'},{' ','|',' ','|',' '}};
+		for(char[] row: gameBoard) {
+			for(char c: row) {
+				System.out.print(c);
+			}
+			System.out.println();
+		}
+	}
+	
 	public static void main(String[] args) {
 		
 		TicTacToeGame game = new TicTacToeGame();
 		game.initialize();
 		game.inputOption();
+		game.showBoard();
 	}
 
 }
