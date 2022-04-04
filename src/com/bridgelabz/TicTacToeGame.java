@@ -77,6 +77,7 @@ public class TicTacToeGame {
 				System.out.println("Space is not free. Fill another index");
 				start();
 			}
+//			if()
 			board[input] = PLAYER_OPTION;
 			turnCheck = 1;
 		}
@@ -101,10 +102,10 @@ public class TicTacToeGame {
 		game.inputOption();
 		game.showBoard();
 		game.toss();
-		while(true) {
-			game.start();
-		}
-		
+//		while(true) {
+//			game.start();
+//		}
+//		
 	}
 
 }
